@@ -32,7 +32,6 @@
 //     }
 // }
 
-
 //---------------------------------------------
 // ------------- For loop + helper function example
 // fn main() {
@@ -66,22 +65,76 @@
 
 //---------------------------------------------
 // ------ Struct example
-struct User {
-    name: String,
-    active: bool,
-    email: String,
-    sign_in_count: u64,
-}
-fn main() {
-    let user1 = User {
-        email: String::from("rohit@gmail.com"),
-        name: String::from("Rohit"),
-        active: true,
-        sign_in_count: 1,
-    };
-    println!(
-        "UserName: {} , Email: {} , Active: {} , Sign In Count: {}",
-        user1.name, user1.email, user1.active, user1.sign_in_count
-    );
+// struct User {
+//     name: String,
+//     active: bool,
+//     email: String,
+//     sign_in_count: u64,
+// }
+// fn main() {
+//     let user1 = User {
+//         email: String::from("rohit@gmail.com"),
+//         name: String::from("Rohit"),
+//         active: true,
+//         sign_in_count: 1,
+//     };
+//     println!(
+//         "UserName: {} , Email: {} , Active: {} , Sign In Count: {}",
+//         user1.name, user1.email, user1.active, user1.sign_in_count
+//     );
+// }
+
+
+//---------------------------------------------
+// ------ Implement on Struct
+// struct Rect {
+//     width: u32,
+//     height: u32,
+// }
+
+// impl Rect {
+//     fn area(&self) -> u32 {
+//         return self.width * self.height;
+//     }
+//     fn perimeter(&self) -> u32 {
+//         return 2 * (self.width + self.height);
+//     }
+// }
+
+// fn main() {
+//     let r1 = Rect {
+//         width: 10,
+//         height: 20,
+//     };
+
+//     println!("Area of rectangle is {}", r1.area());
+//     println!("Perimeter of rectangle is {}", r1.perimeter());
+// }
+
+
+// ---------------------------------------------
+// ------ Enum example
+enum Shape {
+    Circle(f64),          // radius
+    Rectangle(f64, f64),  // width, height
+    Square(f64),          // side
 }
 
+fn calculate_area(shape: Shape) -> f64{
+    // This is a patter matching expression that matches the shape variant and calculates area accordingly
+    match shape{
+        Shape::Circle(radius) => 3.14 * radius * radius,
+        Shape::Rectangle(width, height) => width * height,
+        Shape::Square(side) => side * side, 
+    }
+}
+
+fn main() {
+    let shape1 = Shape::Circle(5.0);
+    let shape2 = Shape::Rectangle(10.0, 20.0);
+    let shape3 = Shape::Square(15.0);
+
+    println!("Area of shape1 (Circle) is {}", calculate_area(shape1));
+    println!("Area of shape2 (Rectangle) is {}", calculate_area(shape2));
+    println!("Area of shape3 (Square) is {}", calculate_area(shape3));
+}
